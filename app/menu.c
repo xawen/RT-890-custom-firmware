@@ -35,7 +35,7 @@
 #include "ui/menu.h"
 #include "ui/version.h"
 
-static const char Menu[49][16] = {
+static const char Menu[50][16] = {
 	"Startup Logo  01",
 	"Voltage       02",
 	"Ringtone      03",
@@ -48,43 +48,44 @@ static const char Menu[49][16] = {
 	"Save Mode     10",
 	"Freq Step     11",
 	"SQ Level      12",
-	"LED Timer     13",
-	"Lock Timer    14",
-	"TOT           15",
-	"VOX Level     16",
-	"VOX Delay     17",
-	"NOAA Monitor  18",
-	"FM Standby    19",
-	"Tail Tone     20",
-	"Scan DIR      21",
-	"Personal ID   22",
-	"Repeater Mode 23",
-	"Scan Resume   24",
-	"CTCSS/DCS     25",
-	"RX CTCSS/DCS  26",
-	"TX CTCSS/DCS  27",
-	"TX Power      28",
-	"Modulation    29",
-	"Band Width    30",
-	"Skip Scan     31",
-	"Busy Lock     32",
-	"Scrambler     33",
-	"DCS Encrypt   34",
-	"Mute Code     35",
-	"CH Name       36",
-	"Save CH       37",
-	"Delete CH     38",
-	"K1 Long       39",
-	"K1 Short      40",
-	"K2 Long       41",
-	"K2 Short      42",
-	"DTMF Delay    43",
-	"DTMF Interval 44",
-	"DTMF Mode     45",
-	"DTMF Select   46",
-	"DTMF Display  47",
-	"Initialize    48",
-	"Version       49",
+	"SQ Mode       13",
+	"LED Timer     14",
+	"Lock Timer    15",
+	"TOT           16",
+	"VOX Level     17",
+	"VOX Delay     18",
+	"NOAA Monitor  19",
+	"FM Standby    20",
+	"Tail Tone     21",
+	"Scan DIR      22",
+	"Personal ID   23",
+	"Repeater Mode 24",
+	"Scan Resume   25",
+	"CTCSS/DCS     26",
+	"RX CTCSS/DCS  27",
+	"TX CTCSS/DCS  28",
+	"TX Power      29",
+	"Modulation    30",
+	"Band Width    31",
+	"Skip Scan     32",
+	"Busy Lock     33",
+	"Scrambler     34",
+	"DCS Encrypt   35",
+	"Mute Code     36",
+	"CH Name       37",
+	"Save CH       38",
+	"Delete CH     39",
+	"K1 Long       40",
+	"K1 Short      41",
+	"K2 Long       42",
+	"K2 Short      43",
+	"DTMF Delay    44",
+	"DTMF Interval 45",
+	"DTMF Mode     46",
+	"DTMF Select   47",
+	"DTMF Display  48",
+	"Initialize    49",
+	"Version       50",
 };
 
 static const ChannelInfo_t EmptyChannel = {
@@ -373,6 +374,13 @@ void MENU_AcceptSetting(void)
 
 	case MENU_SQ_LEVEL:
 		gSettings.Squelch = (gSettingCurrentValue + gSettingIndex) % gSettingMaxValues;
+		SETTINGS_SaveGlobals();
+		break;
+
+	case MENU_SQ_MODE:
+		gSettings.SquelchMode = (gSettingCurrentValue + gSettingIndex) % gSettingMaxValues;
+		// Apply the new squelch mode
+		// RADIO_Retune();
 		SETTINGS_SaveGlobals();
 		break;
 
@@ -682,6 +690,13 @@ void MENU_DrawSetting(void)
 		gSettingMaxValues = 10;
 		DISPLAY_Fill(0, 159, 1, 55, COLOR_BLACK);
 		UI_DrawLevel(gSettingCurrentValue);
+		break;
+
+	case MENU_SQ_MODE:
+		gSettingCurrentValue = gSettings.SquelchMode;
+		gSettingMaxValues = 4;
+		DISPLAY_Fill(0, 159, 1, 55, COLOR_BLACK);
+		UI_DrawSquelchMode(gSettingCurrentValue);
 		break;
 
 	case MENU_LED_TIMER:
@@ -1102,6 +1117,9 @@ void MENU_ScrollSetting(uint8_t Key)
 
 	case MENU_FREQ_STEP:
 		UI_DrawFrequencyStep(gSettingCurrentValue);
+		break;
+	case MENU_SQ_MODE:
+		UI_DrawSquelchMode(gSettingCurrentValue);
 		break;
 
 	case MENU_SQ_LEVEL:

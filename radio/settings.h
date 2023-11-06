@@ -143,7 +143,7 @@ typedef struct __attribute__((packed)) {
 	uint8_t _0x52;
 	uint8_t _0x53;
 	uint8_t _0x54;
-	uint8_t _0x55;
+	uint8_t SquelchMode;
 	uint8_t _0x56;
 	uint8_t _0x57;
 	uint8_t _0x58;

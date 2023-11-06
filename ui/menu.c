@@ -334,6 +334,31 @@ void UI_DrawFrequencyStep(uint8_t Index)
 	}
 }
 
+void UI_DrawSquelchMode(uint8_t Index)
+{
+	gColorForeground = COLOR_WHITE;
+
+	switch (Index)
+	{
+	case 0:
+		UI_DrawSettingOptionEx("RSSI+Noise+Glitch", 16, 0);
+		UI_DrawSettingOptionEx("RSSI+Glitch      ", 16, 1);
+		break;
+	case 1:
+		UI_DrawSettingOptionEx("RSSI+Glitch      ", 16, 0);
+		UI_DrawSettingOptionEx("RSSI+Noise       ", 16, 1);
+		break;
+	case 2:
+		UI_DrawSettingOptionEx("RSSI+Noise       ", 16, 0);
+		UI_DrawSettingOptionEx("RSSI             ", 16, 1);
+		break;
+	case 3:
+		UI_DrawSettingOptionEx("RSSI             ", 16, 0);
+		UI_DrawSettingOptionEx("RSSI+Noise+Glitch", 16, 1);
+		break;
+	}
+}
+
 void UI_DrawTimer(uint8_t Index)
 {
 	char String[4];

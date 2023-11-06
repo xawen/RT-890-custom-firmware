@@ -315,6 +315,20 @@ void BK4819_SetFrequency(uint32_t Frequency)
 	BK4819_WriteRegister(0x39, (Frequency >> 16) & 0xFFFFU);
 }
 
+void BK4819_SetSquelchMode(uint8_t Mode)
+{
+	/* register 0x77, bits 15:8:
+	Squelch mode select:
+0x88/0xA8: RSSI + noise + Glitch (mode 1)
+0xaa: RSSI + Glitch (mode 2)
+0xcc: RSSI + noise (mode 3)
+0xFF: RSSI (mode 4)
+	Bits 7:0 are 0xef
+	*/
+	const uint8_t modes[4] = { 0xa8, 0xaa, 0xcc, 0xff };
+	BK4819_WriteRegister(0x77, (modes[Mode] << 8) | 0xEF);
+}
+
 void BK4819_SetSquelchGlitch(bool bIsNarrow)
 {
 	if (bIsNarrow) {
