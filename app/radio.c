@@ -102,7 +102,7 @@ static void TuneCurrentVfo(void)
 	} else {
 		CSS_SetStandardCode(gVfoInfo[gCurrentVfo].CodeType, gCode, gMainVfo->Encrypt, gMainVfo->bIsNarrow);
 	}
-	BK4819_SetSquelchMode(gSettings.SquelchMode);
+	BK4819_SetSquelchMode(gExtendedSettings.SquelchMode);
 	BK4819_SetSquelchGlitch(gMainVfo->bIsNarrow);
 	BK4819_SetSquelchNoise(gMainVfo->bIsNarrow);
 	BK4819_SetSquelchRSSI(gMainVfo->bIsNarrow);

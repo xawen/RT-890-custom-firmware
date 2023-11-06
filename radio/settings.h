@@ -143,7 +143,7 @@ typedef struct __attribute__((packed)) {
 	uint8_t _0x52;
 	uint8_t _0x53;
 	uint8_t _0x54;
-	uint8_t SquelchMode;
+	uint8_t _0x55;
 	uint8_t _0x56;
 	uint8_t _0x57;
 	uint8_t _0x58;
@@ -162,7 +162,8 @@ typedef struct __attribute__((packed)) {
 	// 0x00
 	uint8_t ScanResume: 2;	// Carrier=1, Time=2, No=3
 	uint8_t AmFixEnabled: 1;
-	uint8_t Undefined: 5;	// free for use
+	uint8_t SquelchMode: 2;	// RSSI+Noise+Glitch=0, RSSI+Glitch=1, RSSI+Noise=2, RSSI=3
+	uint8_t Undefined: 3;	// free for use
 	// 0x01
 	// ...
 } gExtendedSettings_t;

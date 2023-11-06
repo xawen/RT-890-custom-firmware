@@ -378,7 +378,7 @@ void MENU_AcceptSetting(void)
 		break;
 
 	case MENU_SQ_MODE:
-		gSettings.SquelchMode = (gSettingCurrentValue + gSettingIndex) % gSettingMaxValues;
+		gExtendedSettings.SquelchMode = (gSettingCurrentValue + gSettingIndex) % gSettingMaxValues;
 		// Apply the new squelch mode
 		// RADIO_Retune();
 		SETTINGS_SaveGlobals();
@@ -693,7 +693,7 @@ void MENU_DrawSetting(void)
 		break;
 
 	case MENU_SQ_MODE:
-		gSettingCurrentValue = gSettings.SquelchMode;
+		gSettingCurrentValue = gExtendedSettings.SquelchMode;
 		gSettingMaxValues = 4;
 		DISPLAY_Fill(0, 159, 1, 55, COLOR_BLACK);
 		UI_DrawSquelchMode(gSettingCurrentValue);
