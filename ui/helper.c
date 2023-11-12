@@ -839,11 +839,6 @@ void UI_DrawMenuPosition(const char *pString)
 	UI_DrawString(136, 76, gString, 2);
 }
 
-void UI_DrawStringMenuSettings(void)
-{
-	UI_DrawString(24, 76, "Menu Settings   ", 16);
-}
-
 void UI_DrawStringSwitchType(void)
 {
 	DISPLAY_DrawRectangle0(1, 20, 159, 1, COLOR_RGB(31, 53, 0));
