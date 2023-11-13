@@ -19,6 +19,7 @@
 #include "helper/helper.h"
 #include "radio/channels.h"
 #include "radio/settings.h"
+#include "task/keyaction.h"
 #include "task/sidekeys.h"
 #include "ui/gfx.h"
 #include "ui/helper.h"
@@ -144,14 +145,25 @@ void UI_DrawActions(uint8_t Index)
 		"Preset CH   ",
 		"Local Alarm ",
 		"Remote Alarm",
-#ifdef ENABLE_NOAA
 		"NOAA CH     ",
-#endif
 		"Send Tone   ",
 		"Roger Beep  ",
-		"FM Radio    ",
-		"Freq Scanner",
+		"Chan Scanner",
 		"Flashlight  ",
+		"FM Radio    ",
+		"AM Fix      ",
+		"VOX         ",
+		"TX Power    ",
+		"SQ Level    ",
+		"Dual Standby",
+		"Backlight   ",
+		"Freq Step   ",
+		"Key Beep    ",
+		"Skip Scan   ",
+		"DTMF Decode ",
+		"Dual Display",
+		"TX Frequency",
+		"Lock        ",
 	};
 
 	UI_DrawSettingOptionEx(Actions[Index], 12, 0);
